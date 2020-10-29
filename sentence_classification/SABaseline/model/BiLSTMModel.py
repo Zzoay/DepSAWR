@@ -60,6 +60,9 @@ class BiLSTMModel(nn.Module):
         self.proj = nn.Linear(2*config.lstm_hiddens, vocab.tag_size, bias=False)
 
     def forward(self, words, extwords, masks):
+        #yaozz forward: (word embedding + extword embedding) -> bilstm -> max pooling -> fc
+        #yaozz TODO: what is extword?
+        
         # x = (batch size, sequence length, dimension of embedding)
         x_word_embed = self.word_embed(words)
         x_extword_embed = self.extword_embed(extwords)

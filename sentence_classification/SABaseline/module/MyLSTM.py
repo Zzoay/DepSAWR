@@ -206,6 +206,7 @@ class MyLSTM(nn.Module):
         max_time = input.size(0)
         output = []
         hx = initial
+        #yaozz reverse direction 
         for time in reversed(range(max_time)):
             h_next, c_next = cell(input=input[time], hx=hx)
             h_next = h_next*masks[time] + initial[0]*(1-masks[time])

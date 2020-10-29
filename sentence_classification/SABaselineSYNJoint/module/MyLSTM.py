@@ -60,6 +60,7 @@ class NonLinear(nn.Module):
         self.linear.bias.data.copy_(torch.from_numpy(b))
 
 
+#yaozz TODO: what is biaffine
 class Biaffine(nn.Module):
     def __init__(self, in1_features, in2_features, out_features,
                  bias=(True, True)):

@@ -82,6 +82,7 @@ class BiLSTMModel(nn.Module):
         if self.training:
             x_embed, x_syn = drop_bi_input_independent(x_embed, x_syn, self.config.dropout_emb)
 
+        #yaozz concatenate embedding of inputs and syntax-aware word representations
         x_lexical = torch.cat((x_embed, x_syn), dim=2)
 
         hiddens, _ = self.lstm(x_lexical, masks, None)

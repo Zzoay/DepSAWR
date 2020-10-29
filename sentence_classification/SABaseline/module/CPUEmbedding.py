@@ -3,6 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.nn.parameter import Parameter
 
+#yaozz TODO: why cpu?
 class CPUEmbedding(nn.Module):
     def __init__(self, num_embeddings, embedding_dim, padding_idx=None):
         super(CPUEmbedding, self).__init__()

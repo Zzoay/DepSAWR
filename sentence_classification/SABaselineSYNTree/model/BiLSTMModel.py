@@ -105,6 +105,7 @@ class BiLSTMModel(nn.Module):
         x_extword_embed = self.extword_embed(extwords)
         x_embed = x_word_embed + x_extword_embed
 
+        #yaozz differ from baseline
         x_rel_embed = self.rel_embed(rels)
 
         if self.training:
@@ -128,6 +129,7 @@ class BiLSTMModel(nn.Module):
         td_outputs, td_hidden_ts = self.td_tree(x_lexical, indexes, trees, lengths)
 
         tree_outputs = torch.cat([dt_outputs, td_outputs], dim=2)
+        #yaozz difference end
 
         hiddens, _ = self.lstm(tree_outputs, masks, None)
         hiddens = hiddens.transpose(1, 0)

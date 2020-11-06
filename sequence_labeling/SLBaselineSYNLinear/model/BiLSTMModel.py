@@ -59,6 +59,7 @@ class BiLSTMModel(nn.Module):
         lstm_out, _ = self.bilstm(embeddings, masks)
         lstm_out = lstm_out.transpose(1, 0)
 
+        #yaozz differ from baseline, why should we gather here?
         filtered = torch.gather(lstm_out, 1, indices)
 
         label_scores = self.outlayer(filtered)

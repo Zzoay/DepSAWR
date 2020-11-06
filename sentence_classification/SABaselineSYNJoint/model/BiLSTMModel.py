@@ -58,10 +58,13 @@ class BiLSTMModel(nn.Module):
         x_extword_embed = self.extword_embed(extwords)
         x_embed = x_word_embed + x_extword_embed
 
+        #yaozz differ from baseline
         syn_idx = 0
         x_syns = []
+        #yaozz Why should every syntax output be put into a linear layer, for projection?
         x_syn_emb = self.transformer_emb(synxs[syn_idx])
-        x_syns.append(x_syn_emb)
+        #yaozz In the paper that has 3*lstm, 1*syn head, 1*syn dep representations, but there is syn embedding additionally.
+        x_syns.append(x_syn_emb)  
         syn_idx += 1
 
         for layer in range(self.parser_lstm_layers):
@@ -77,6 +80,7 @@ class BiLSTMModel(nn.Module):
         x_syns.append(x_syn_head)
         syn_idx += 1
 
+        #yaozz what's the use of synscale?
         x_syn = self.synscale(x_syns)
 
         if self.training:
@@ -84,6 +88,7 @@ class BiLSTMModel(nn.Module):
 
         #yaozz concatenate embedding of inputs and syntax-aware word representations
         x_lexical = torch.cat((x_embed, x_syn), dim=2)
+        #yaozz difference end
 
         hiddens, _ = self.lstm(x_lexical, masks, None)
         hiddens = hiddens.transpose(1, 0)

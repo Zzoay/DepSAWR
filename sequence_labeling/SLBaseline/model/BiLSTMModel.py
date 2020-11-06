@@ -72,6 +72,7 @@ class BiLSTMModel(nn.Module):
 
         embeddings = torch.cat((x_embed, x_predict_embed), dim=2)
 
+        #yaozz embedding -> bilstm -> fc -> crf
         lstm_out, _ = self.bilstm(embeddings, masks)
         lstm_out = lstm_out.transpose(1, 0)
 

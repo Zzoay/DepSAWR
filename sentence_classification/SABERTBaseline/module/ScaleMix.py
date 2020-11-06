@@ -25,7 +25,7 @@ class ScalarMix(torch.nn.Module):
     def forward(self, tensors: List[torch.Tensor],  # pylint: disable=arguments-differ
                 mask: torch.Tensor = None) -> torch.Tensor:
         """
-        Compute a weighted average of the ``tensors``.  The input tensors an be any shape
+        Compute a weighted average of the ``tensors``.  The input tensors an be any shape  #yaozz typo? 'an be' -> 'can be'
         with at least two dimensions, but must all be the same shape.
 
         When ``do_layer_norm=True``, the ``mask`` is required input.  If the ``tensors`` are

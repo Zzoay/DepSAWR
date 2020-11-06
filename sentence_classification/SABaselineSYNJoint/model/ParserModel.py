@@ -72,4 +72,4 @@ class ParserModel(nn.Module):
         results.append(x_all_dep)
         results.append(x_all_head)
 
-        return results
+        return results  #yaozz Are there 1*embedding + 3*bilstm + 1*head + 1*dep ?

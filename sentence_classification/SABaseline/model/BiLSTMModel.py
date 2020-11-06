@@ -40,6 +40,7 @@ class BiLSTMModel(nn.Module):
         self.word_embed = nn.Embedding(vocab.vocab_size, self.word_dims, padding_idx=vocab.PAD) 
         if vocab.extvocab_size != extvocab_size:
             print("word vocab size does not match, check word embedding file")
+        #yaozz TODO: Why dos extword_embed use CPUEmbedding but word_embed use nn.Embedding? Is there some difference?
         self.extword_embed = CPUEmbedding(vocab.extvocab_size, self.word_dims, padding_idx=vocab.PAD)
 
         word_init = np.zeros((vocab.vocab_size, self.word_dims), dtype=np.float32)
